@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket app</title>
+</head>
+<body>
+    <h1>Socket app</h1>
+    
+    <input type="text" id="msg" placeholder="Enter message" />
+    <button id="sendBtn">Send</button>
+
+    <div id="rtnMsg"></div>
+
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script>
+        const socket = io('localhost:3001');
+        const sbtn = document.getElementById('sendBtn');
+        const msgInput = document.getElementById('msg');
+        const rtnAllMsg = document.getElementById( 'rtnMsg'); 
+
+        sbtn.addEventListener('click', (e) => {
+            const message = msgInput.value;
+            console.log('message', message);
+            socket.emit('getOrderId', message);
+        });
+
+        socket.on('sendOrderId', data => {
+            const p = document.createElement('p');
+            p.innerText = data;
+            console.log(data);
+            rtnAllMsg.appendChild(p);
+        })
+    </script>
+</body>
+</html>
