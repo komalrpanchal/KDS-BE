@@ -7,6 +7,7 @@ const socket = require('socket.io');
 const orderRouter = require("./routes/orderRoute");
 const server = http.createServer(app);
 const socketServer = http.createServer();
+const port = process.env.PORT || 3000;
 global.io = socket(socketServer, {
     cors: {
       origin: "*",
@@ -26,10 +27,10 @@ app.get('/', (req, res) => {
     return res.sendFile("./public/index.html");
 })
 
-server.listen(process.env.PORT || 3000, () => {
+server.listen( port, () => {
     console.log('listening on server*: 3000');
 });
 
-socketServer.listen(process.env.PORT || 3001, () => {
+socketServer.listen( 3001, () => {
     console.info(`Socket server started on 3001`);
 });
