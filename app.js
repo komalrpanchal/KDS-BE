@@ -11,8 +11,9 @@ const port = process.env.PORT || 3000;
 const serverPort = process.env.Port || 3001;
 global.io = socket(socketServer, {
     cors: {
-      origin: "*",
-      methods: ["GET", "POST"]
+      origin: `https://pos-socket-3eb5c1cd5cf2.herokuapp.com/`,
+      methods: ["GET", "POST"],
+        credentials: true
     }
   });
 
