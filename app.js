@@ -26,10 +26,10 @@ app.get('/', (req, res) => {
     return res.sendFile("./public/index.html");
 })
 
-server.listen(3000, () => {
+server.listen(process.env.PORT || 3000, () => {
     console.log('listening on server*: 3000');
 });
 
-socketServer.listen(3001, () => {
+socketServer.listen(process.env.PORT || 3001, () => {
     console.info(`Socket server started on 3001`);
 });
