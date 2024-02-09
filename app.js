@@ -9,6 +9,8 @@ const server = http.createServer(app);
 const socketServer = http.createServer();
 const port = process.env.PORT || 3000;
 const serverPort = process.env.Port || 3001;
+
+app.use(cors());
 global.io = socket(socketServer, {
     cors: {
       origin: `https://pos-socket-3eb5c1cd5cf2.herokuapp.com/`,
@@ -18,8 +20,6 @@ global.io = socket(socketServer, {
   });
 
 require('./socket').init()
-
-app.use(cors());
 
 app.use("/api/getOrderId", orderRouter);
 
