@@ -4,7 +4,7 @@ const orderController = require("../controllers/orderController");
 const router = express.Router();
 
 router
-  .route("/:id")
+  .route("/:shopID/getOrderId/:id")
   .get(orderController.getOrders);
 
 module.exports = router;

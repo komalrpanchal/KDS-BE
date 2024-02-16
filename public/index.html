@@ -10,28 +10,43 @@
     
     <input type="text" id="msg" placeholder="Enter message" />
     <button id="sendBtn">Send</button>
+    <button id="fetchDataBtn">Fetch Data</button>
 
     <div id="rtnMsg"></div>
 
     <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
     <script>
         const socket = io('localhost:3001');
+
+        //for emit to all shop with orderId
         const sbtn = document.getElementById('sendBtn');
         const msgInput = document.getElementById('msg');
-        const rtnAllMsg = document.getElementById( 'rtnMsg'); 
-
+        const rtnAllMsg = document.getElementById( 'rtnMsg');
         sbtn.addEventListener('click', (e) => {
             const message = msgInput.value;
             console.log('message', message);
             socket.emit('getOrderId', message);
         });
-
         socket.on('sendOrderId', data => {
             const p = document.createElement('p');
             p.innerText = data;
             console.log(data);
             rtnAllMsg.appendChild(p);
-        })
+        });
+
+        //for emit of orderId to particular shopid
+        // const fetchBtn = document.getElementById('fetchDataBtn');
+        // fetchBtn.addEventListener('click', () => {
+        //     const message = msgInput.value;
+        //     console.log('shopId', message);
+        //     socket.emit('shopId', message);
+        // });
+        // socket.on('shopId', (data) => {
+        //     const p = document.createElement('p');
+        //     p.innerText = data;
+        //     console.log(data);
+        //     rtnAllMsg.appendChild(p);
+        // });
     </script>
 </body>
 </html>

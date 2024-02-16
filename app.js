@@ -20,7 +20,7 @@ require('./socket').init()
 
 app.use(cors());
 
-app.use("/api/getOrderId", orderRouter);
+app.use("/api", orderRouter);
 
 app.use(express.static(path.resolve("./public")));
 
