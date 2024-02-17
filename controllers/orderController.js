@@ -11,7 +11,7 @@ exports.getOrders = async (req, res) => {
     // });
 
     if (shopId) {
-        sendOrderId('sendOrderId', orderId, shopId);
+        sendOrderId('sendOrderId', shopId, orderId);
         res.status(200).json({
             status: "success",
             shopId: shopId,

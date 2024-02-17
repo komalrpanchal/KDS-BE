@@ -16,7 +16,9 @@
 
     <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
     <script>
-        const socket = io('http://socket.tenacioustechies.com:3001');
+         // const socket = io('http://socket.tenacioustechies.com:3001');
+         const socket = io('localhost:3001');
+         socket.emit('shopId', '3161');
 
         //for emit to all shop with orderId
         const sbtn = document.getElementById('sendBtn');
@@ -39,7 +41,7 @@
         fetchBtn.addEventListener('click', () => {
             const message = msgInput.value;
             console.log('shopId', message);
-            socket.emit('shopId', message);
+            socket.emit('shopId', { shopId, orderId });
         });
         socket.on('shopId', (data) => {
             const p = document.createElement('p');

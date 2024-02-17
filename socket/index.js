@@ -3,9 +3,11 @@ exports.init = () => {
         console.log("connection started");
     });
 
-    global.io.on('shopId', (data) => {
-        global.io.join(data);
-        console.log('joindata', data)
+    io.sockets.on('connection', function (socket) {
+        socket.on('shopId', (data) => {
+                socket.join(data);
+                console.log('joindata', data);
+            });
     });
 
     global.io.on("disconnect", () => {
@@ -13,11 +15,12 @@ exports.init = () => {
     });
 }
 
-exports.sendOrderId = (name, data, shopId) => {
+exports.sendOrderId = (name, shopId, orderId) => {
     //for emit to all shop with orderId
     // global.io.emit(name, data);
 
     //for emit of orderId to particular shopid
     console.log('Received shopId:', shopId);
-    global.io.to(shopId).emit(name, data);
+    console.log('Received orderId:', orderId);
+    io.sockets.in(shopId).emit(name, shopId);
 }
