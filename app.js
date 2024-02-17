@@ -16,7 +16,7 @@ global.io = socket(socketServer, {
     }
   });
 
-require('./socket').init()
+require('./socket').init();
 
 app.use(cors());
 

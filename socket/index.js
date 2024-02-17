@@ -1,6 +1,15 @@
 exports.init = () => {
-    global.io.on('connection', socket => {
+    global.io.on('connection', () => {
         console.log("connection started");
+    });
+
+    global.io.on('shopId', (data) => {
+        global.io.join(data);
+        console.log('joindata', data)
+    });
+
+    global.io.on("disconnect", () => {
+        console.log("connection disconnected");
     });
 }
 

@@ -22,7 +22,7 @@
         const sbtn = document.getElementById('sendBtn');
         const msgInput = document.getElementById('msg');
         const rtnAllMsg = document.getElementById( 'rtnMsg');
-        sbtn.addEventListener('click', (e) => {
+        sbtn.addEventListener('click', () => {
             const message = msgInput.value;
             console.log('message', message);
             socket.emit('getOrderId', message);
@@ -30,23 +30,23 @@
         socket.on('sendOrderId', data => {
             const p = document.createElement('p');
             p.innerText = data;
-            console.log(data);
+            console.log('data',data);
             rtnAllMsg.appendChild(p);
         });
 
         //for emit of orderId to particular shopid
-        // const fetchBtn = document.getElementById('fetchDataBtn');
-        // fetchBtn.addEventListener('click', () => {
-        //     const message = msgInput.value;
-        //     console.log('shopId', message);
-        //     socket.emit('shopId', message);
-        // });
-        // socket.on('shopId', (data) => {
-        //     const p = document.createElement('p');
-        //     p.innerText = data;
-        //     console.log(data);
-        //     rtnAllMsg.appendChild(p);
-        // });
+        const fetchBtn = document.getElementById('fetchDataBtn');
+        fetchBtn.addEventListener('click', () => {
+            const message = msgInput.value;
+            console.log('shopId', message);
+            socket.emit('shopId', message);
+        });
+        socket.on('shopId', (data) => {
+            const p = document.createElement('p');
+            p.innerText = data;
+            console.log(data);
+            rtnAllMsg.appendChild(p);
+        });
     </script>
 </body>
 </html>
